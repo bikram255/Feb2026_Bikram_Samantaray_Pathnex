@@ -1,0 +1,26 @@
+Today i have learned
+
+Shell Scripting:
+Today i have started practcing on shell scripting
+- in shell scripting i have practiced on echo, command line arguments ($0, $1 etc), 
+- created a script to create new user by taking user name from command line arguments and also from user inputs.
+- Next i will practice on how to create more than one users, listed in a text file.
+- Now practing on if-else and loop.
+- Any how i will finish shell-scripting basics today and practice on few advance scripting like taking backup, cpu utilization, memory checking, processes and all.
+
+
+Kubernetes:
+- i have written the nginx pod yaml file from scratch and pushed to github.
+- Next i will write deployment file for a nginx app.
+- Also i will the run my yaml file in my eks server on aws.
+
+
+Docker:
+- i will write a docker file for java application.
+
+
+Ansible:
+- i will create 3 servers, one will be master node and another 2 will be normal server, from master node i will install packages on 2 normal servers, i will update that server, create users on that server, delete users on that server.
+
+AWS:
+- i will revise s3 bucket and route53 concept in aws
