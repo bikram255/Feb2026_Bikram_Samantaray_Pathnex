@@ -223,7 +223,6 @@ else
   exit 1
 fi
 
-
 👉 Used in:
 Jenkins pipelines
 CI/CD
@@ -240,3 +239,77 @@ fi
 Because:
 👉 shell automatically checks exit code.
 This is cleaner.
+
+✅ Example – Print all arguments
+#!/bin/bash
+echo "Script name: $0"
+echo "Total args: $#"
+echo "All args: $@"
+
+Run:
+
+./test.sh devops aws linux
+
+✅ Loop through arguments
+for arg in "$@"
+do
+  echo $arg
+done
+
+Output:
+
+devops
+aws
+linux
+
+📌 3. Practical DevOps Examples
+✅ Example 1 – Create user from argument
+#!/bin/bash
+sudo useradd -m $1
+echo "User $1 created successfully"
+
+Run:
+
+./create_user.sh bikram
+
+✅ Example 2 – Backup with date variable
+#!/bin/bash
+backup_file="backup_$(date +%F).tar.gz"
+tar -czf $backup_file /home/ec2-user
+
+✅ Example 3 – Check if argument provided
+if [ $# -eq 0 ]
+then
+  echo "Please provide filename"
+  exit 1
+fi
+
+👉 Very common interview question
+📌 4. Best Practices
+
+✅ Use meaningful names
+✅ Always quote variables → "$var"
+✅ Validate arguments
+✅ Add comments
+✅ Use #!/bin/bash shebang
+
+🎯 Interview Quick Answers
+❓ What is a variable?
+
+A container to store data in a script.
+❓ Difference between $@ and $* ?
+$@ → separate arguments
+$* → single string
+❓ How to get number of arguments?
+$#
+
+🚀 Quick Summary
+name="Bikram"
+echo $name
+
+read user
+echo $user
+
+./script.sh arg1 arg2
+
+$1 $2 $# $@
