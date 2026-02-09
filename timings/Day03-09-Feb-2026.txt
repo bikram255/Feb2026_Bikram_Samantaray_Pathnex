@@ -1,0 +1,2 @@
+Yesterday i could not completed the Shell Scripting because started making notes on aws load balancer, auto scaling group, launch template, so today i will try to cover some shell script topics, and i write kubernetes yaml file and docker file for java application. 
+
