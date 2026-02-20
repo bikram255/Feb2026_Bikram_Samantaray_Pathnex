@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airtel-frontend-app-deployment
+  labels:
+    client: airtel
+    app: frontend
+    stage: dev
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      client: airtel
+      app: frontend
+      stage: dev
+  strategy: 
+   type: RollingUpdate
+   rollingUpdate:
+     maxUnavailable: 2
+     maxSurge: 2
+  templates:
+    metadata:
+      labels:
+        client: airtel
+        app: frontend
+        stage: dev
+    spec:
+      containers:
+        - name: aritel-frontend-app-image
+          image: myorg/airtel-frontend:v2
+          imagePullPolicy: always
+          ports:
+            - containerPort: 8080
+              name: frontend-port
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "250Mi"
+            limits:
+              cpu: "500m"
+              memory: "500Mi"
+          livenessProbe:
+            httpGet: /
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutseconds: 10
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+          env:
+            - name: APP_ENV
+              value: "dev"
+            - name: DB_PORT
+              value: "3306"
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secret
+          volumeMounts:
+            - name: app-storage
+              mountPath: /usr/share/nginx/html/data
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-vpc
+       
+
+
+
